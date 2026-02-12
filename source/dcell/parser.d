@@ -1001,6 +1001,21 @@ private:
         evs ~= newMouseEvent(x, y, button, mod);
     }
 
+    /***
+     * Handles Win32 input mode key sequences (CSI ... _).
+     *
+     * Parses a Win32 console input key event encoded as a CSI sequence with
+     * six semicolon-separated parameters, and translates it into one or more
+     * key events appended to `evs`.
+     *
+     * Params:
+     *   p0 = wVirtualKeyCode (default 0)
+     *   p1 = wVirtualScanCode (default 0)
+     *   p2 = UnicodeChar as a decimal value (default 0)
+     *   p3 = bKeyDown — 1 for key-down, 0 for key-up (default 0)
+     *   p4 = dwControlKeyState — modifier flags (default 0)
+     *   p5 = wRepeatCount — clamped to [1, 1024] to prevent CPU hang (default 1)
+     */
     void handleWinKey(int p0, int p1, int p2, int p3, int p4, int p5) @safe
     {
         // win32-input-mode
