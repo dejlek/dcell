@@ -12,7 +12,7 @@
 module dcell.parser;
 
 import core.time;
-import std.algorithm : max;
+import std.algorithm : max, min;
 import std.ascii;
 import std.base64;
 import std.conv : to;
@@ -1046,7 +1046,7 @@ private:
         auto key = Key.graph;
         auto chr = p2;
         auto mod = Modifiers.none;
-        auto rpt = max(1, p5);
+        auto rpt = min(max(1, p5), 1024);
 
         if (p0 in winKeys)
         {
